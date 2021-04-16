@@ -10,7 +10,7 @@ function init() {
         },
 
         methods: {
-            getAlbums: function (arrayAlbums) {
+            getGenres: function (arrayAlbums) {
                 for (let i = 0; i < arrayAlbums.length; i++) {
                     const album = arrayAlbums[i];
 
@@ -34,7 +34,32 @@ function init() {
                         filteredAlbums.push(album);
                     }
                 }
+                
+                // function compare(a, b) {
+                //     if (a.year < b.year) {
+                //         return -1;
+                //     }
+                //     if (a.year > b.year) {
+                //         return 1;
+                //     }
+                //     return 0;
+                // }
+
                 return filteredAlbums;
+            },
+
+            sortAlbumsByDate: function () {
+                function compare(a, b) {
+                    if (a.year < b.year) {
+                        return -1;
+                    }
+                    if (a.year > b.year) {
+                        return 1;
+                    }
+                    return 0;
+                }
+
+                return this.filteredAlbums.sort(compare);
             }
         },
 
@@ -42,7 +67,7 @@ function init() {
             axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then(response => {
                 this.albums = response.data.response;
-                this.getAlbums(this.albums);
+                this.getGenres(this.albums);
             });
         }
     });
