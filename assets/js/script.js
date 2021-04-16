@@ -44,7 +44,7 @@ function init() {
                 //     }
                 //     return 0;
                 // }
-
+                // return filteredAlbums.sort(compare);
                 return filteredAlbums;
             },
 
