@@ -1,0 +1,46 @@
+
+/*
+*****************************
+- - - - GENERAL RULES - - - - 
+*****************************
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - */
+
+/*
+*****************************
+- - - -  MAIN  RULES  - - - -
+*****************************
+*/
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+
+    flex-flow: row wrap;
+}
+
+.music-card {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 0 1 15%;
+    align-items: center;
+}
+
+.card-cover img{
+    width: 100px;
+    height: 100px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+
+    <!-- VueJS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+    <!-- my CSS / JS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
+    <title>Vue Music Cards</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="header-wrapper">
+                <h1 class="title">Vue Music Albums</h1>
+            </div>
+            <select v-model="selectedGenre">
+                <option
+                    value="All"
+                    selected>
+                    All
+                </option>
+                <option
+                    v-for="genre in genres"
+                    :value="genre">
+                    {{ genre }}
+                </option>
+            </select>
+        </header>
+        <main>
+            <div class="container">
+                <div v-for="album in filteredAlbums" 
+                     class="music-card"
+                     :class="">
+                    <div class="card-cover">
+                        <img :src="album.poster" alt="Album cover">
+                    </div>
+                    <h1>{{ album.title }}</h1>
+                    <h2>{{ album.author }}</h2>
+                    <h3>{{ album.genre }}</h3>
+                    <h3>{{ album.year }}</h3>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
