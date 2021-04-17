@@ -5,23 +5,27 @@ function init() {
 
         data: {
             albums: [],
-            genres: [],
             selectedGenre: 'All'
         },
 
         methods: {
-            getGenres: function (arrayAlbums) {
-                for (let i = 0; i < arrayAlbums.length; i++) {
-                    const album = arrayAlbums[i];
-
-                    if (!this.genres.includes(album.genre)) {
-                        this.genres.push(album.genre)
-                    }
-                }
-            }
         },
 
         computed: {
+            getGenres: function () {
+                let albums = this.albums;
+                const genres = [];
+
+                for (let i = 0; i < albums.length; i++) {
+                    const album = albums[i];
+
+                    if (!genres.includes(album.genre)) {
+                        genres.push(album.genre);
+                    }
+                }
+                return genres;
+            },
+
             filteredAlbums: function () {
                 const filteredAlbums = [];
 
@@ -34,17 +38,6 @@ function init() {
                         filteredAlbums.push(album);
                     }
                 }
-                
-                // function compare(a, b) {
-                //     if (a.year < b.year) {
-                //         return -1;
-                //     }
-                //     if (a.year > b.year) {
-                //         return 1;
-                //     }
-                //     return 0;
-                // }
-                // return filteredAlbums.sort(compare);
                 return filteredAlbums;
             },
 
@@ -67,7 +60,6 @@ function init() {
             axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then(response => {
                 this.albums = response.data.response;
-                this.getGenres(this.albums);
             });
         }
     });
