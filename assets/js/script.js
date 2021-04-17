@@ -9,6 +9,33 @@ function init() {
         },
 
         methods: {
+            filteredAlbums: function () {
+                const filteredAlbums = [];
+
+                for (let i = 0; i < this.albums.length; i++) {
+                    const album = this.albums[i];
+                    
+                    if (album.genre === this.selectedGenre) {
+                        filteredAlbums.push(album);
+                    } else if (this.selectedGenre === 'All') {
+                        filteredAlbums.push(album);
+                    }
+                }
+                return filteredAlbums;
+            },
+
+            sortAlbumsByDate: function (arrayAlbums) {
+                function compare(a, b) {
+                    if (a.year < b.year) {
+                        return -1;
+                    }
+                    if (a.year > b.year) {
+                        return 1;
+                    }
+                    return 0;
+                }
+                return arrayAlbums.sort(compare);
+            }
         },
 
         computed: {
@@ -26,33 +53,8 @@ function init() {
                 return genres;
             },
 
-            filteredAlbums: function () {
-                const filteredAlbums = [];
-
-                for (let i = 0; i < this.albums.length; i++) {
-                    const album = this.albums[i];
-                    
-                    if (album.genre === this.selectedGenre) {
-                        filteredAlbums.push(album);
-                    } else if (this.selectedGenre === 'All') {
-                        filteredAlbums.push(album);
-                    }
-                }
-                return filteredAlbums;
-            },
-
-            sortAlbumsByDate: function () {
-                function compare(a, b) {
-                    if (a.year < b.year) {
-                        return -1;
-                    }
-                    if (a.year > b.year) {
-                        return 1;
-                    }
-                    return 0;
-                }
-
-                return this.filteredAlbums.sort(compare);
+            filterAndSortAlbums: function () {
+                return this.sortAlbumsByDate(this.filteredAlbums());
             }
         },
 
